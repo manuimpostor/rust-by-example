@@ -47,4 +47,11 @@ fn main() {
     let tr2 = Transaction::new(1, 2, 3000);
 
     println!("{}", tr2.to_string());
+    // Anonymous functions, Closure
+    let anon_square = |input:i32| input * input;
+    let anon_increment = |input:i32| input + 1;
+
+    let i = 2;
+    println!("function that squares stuff: {}", anon_square(i));
+    println!("function that incs stuff: {}", anon_increment(anon_square(i)));
 }
