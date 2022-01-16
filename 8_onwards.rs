@@ -41,6 +41,18 @@ fn flyer() {
   let mut fly = || count += 1;
   fly();
   println!("fly high to {:?}", fly());
+  //call function as parameter, Fn boundaries have to be respected (not fully understand)
+  // generic F type needs to be defined when passing functions as params
+  fn call_me<F: Fn()>(f: F) {
+      f();
+  }
+  fn function() {
+      println!("I'm a function");
+  }
+  let closure = || println!("I'm a closure");
+  call_me(closure);
+  call_me(function);
+
 }
 
 // adding pretty print for the struct
