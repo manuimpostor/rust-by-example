@@ -35,6 +35,14 @@ impl Transaction {
   }
 }
 
+fn flyer() {
+  // closure and some borrowing (mut, imut)
+  let mut count = 1;
+  let mut fly = || count += 1;
+  fly();
+  println!("fly high to {:?}", fly());
+}
+
 // adding pretty print for the struct
 impl fmt::Display for Transaction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -54,4 +62,6 @@ fn main() {
     let i = 2;
     println!("function that squares stuff: {}", anon_square(i));
     println!("function that incs stuff: {}", anon_increment(anon_square(i)));
+
+    flyer();
 }
