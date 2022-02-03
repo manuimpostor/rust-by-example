@@ -4,7 +4,6 @@ fn is_odd(n: u32) -> bool {
     return n % 2 == 1;
 }
 
-
 fn main() {
     // match instead of switch statements, powerful!
     // branches need to be extensive,so need to catch all cases
