@@ -1,3 +1,6 @@
+mod collections;
 fn main() {
-    println!("Hello, world!");
+
+    println!("wowsy");
+    collections::collections::run_print();
 }
