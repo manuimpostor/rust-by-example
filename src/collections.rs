@@ -4,36 +4,45 @@
 pub mod collections {
     // hashset set of unique vals of type T
     // Task: create hashset with name of cities from csv to do fast lookup
-    //use std::collections::hash_set;
+    use std::collections::HashSet;
     use std::error::Error;
     extern crate csv;
     use csv::Reader;
     use std::process;
 
-    // TODO: import city names into a hashset
-    // next: filter by city row, put that in hashset, call from main with few examples, renume fn
-    fn read_cities() -> Result<(), Box<dyn Error>> {
+    // done: import city names into a hashset
+    // done: filter by city row, put that in hashset
+    fn read_cities() -> Result<HashSet<String>, Box<dyn Error>> {
         let mut rdr = Reader::from_path("./src/uspop.csv")?;
         let headers = rdr.headers()?;
         println!("{:?}", headers);
+
+        let mut cities_we_deliver_to:HashSet<String> = HashSet::new();
 
         for result in rdr.records() {
             let record = result?;
 
             let mut i = 0;
             for r in record.into_iter() {
-                if i % 5 == 0 {println!("{:?}", r);}
+                if i % 5 == 0 {
+                    cities_we_deliver_to.insert(r.to_string());
+                }
                 i = i + 1;
             }
         }
-        Ok(())
+
+        Ok(cities_we_deliver_to)
     }
-    pub fn run_print()  {
+
+    // todo: call from main with few examples, allow quering for city in hash
+    // fn city_contained
+
+    pub fn run_print() {
         if let Err(err) = read_cities(){
             println!("error running read_cities(): {}", err);
             process::exit(1);
         }
+        println!("{:?}", read_cities());
     }
 
-    //let mut _cities_we_deliver_to = HashSet::new("wow");[]
 }
