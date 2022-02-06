@@ -37,12 +37,30 @@ pub mod collections {
     // todo: call from main with few examples, allow quering for city in hash
     // fn city_contained
 
-    pub fn run_print() {
+    fn hash_cities() -> HashSet<String> {
         if let Err(err) = read_cities(){
             println!("error running read_cities(): {}", err);
             process::exit(1);
+        } 
+        if let Ok(res) = read_cities(){
+            println!("we have just the hashset");
+            return res;
         }
+
         println!("{:?}", read_cities());
+        // get HashSet as return
+        return HashSet::new();
     }
 
+    pub fn run_print() {
+        let h = hash_cities();
+        println!{"{:?}", h};
+    }
+
+    pub fn city_contained(c: String) -> bool {
+        // check in hashset
+        let h = hash_cities();
+        if h.contains(&c) { return true; }
+        return false;
+    }
 }
